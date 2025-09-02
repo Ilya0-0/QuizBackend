@@ -33,7 +33,7 @@ async function bootstrap() {
   const publicOrigin = configService.get<string>('PUBLIC_ORIGIN');
 
   app.enableCors({
-    origin: ['http://localhost:3000', publicOrigin],
+    origin: [publicOrigin],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

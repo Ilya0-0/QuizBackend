@@ -99,7 +99,6 @@ export class AuthService {
     if (existingUser) {
       throw new ConflictException(AppErrors.USER_ALREADY_EXISTS);
     }
-
     const passwordHash = await bcrypt.hash(
       data.password,
       await bcrypt.genSalt()

@@ -15,7 +15,7 @@ export default registerAs('cookie', () => {
     name: REFRESH_COOKIE_KEY,
     options: {
       path: '/',
-      domain: 'localhost',
+      domain: process.env.FRONTEND_HOST,
       httpOnly: true,
       sameSite: 'strict' as 'strict',
       secure: process.env.NODE_ENV === 'production',
