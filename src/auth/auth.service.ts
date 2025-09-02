@@ -70,7 +70,7 @@ export class AuthService {
     const user = await this.usersService.findUserByLogin(data.login);
 
     if (!user) {
-      throw new UnauthorizedException('Invalid login or password');
+      throw new UnauthorizedException(AppErrors.INVALID_LOGIN_OR_PASSWORD);
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -79,7 +79,7 @@ export class AuthService {
     );
 
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid login or password');
+      throw new UnauthorizedException(AppErrors.INVALID_LOGIN_OR_PASSWORD);
     }
 
     const payload: JwtPayload = {
@@ -97,7 +97,7 @@ export class AuthService {
     const existingUser = await this.usersService.findUserByLogin(data.login);
 
     if (existingUser) {
-      throw new Error(AppErrors.USER_ALREADY_EXISTS);
+      throw new ConflictException(AppErrors.USER_ALREADY_EXISTS);
     }
 
     const passwordHash = await bcrypt.hash(

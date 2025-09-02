@@ -38,6 +38,7 @@ export class AuthController {
   }
 
   @Post('sign-up')
+  @PublicRoute()
   signUp(@Body() authData: AuthInputDto) {
     return this.authService.signUp(authData);
   }
